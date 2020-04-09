@@ -10,7 +10,7 @@ app = FastAPI()
 
 
 def authenticate_client(client_secret: str) -> bool:
-    return os.getenv('SOCKET_CHECKER_SECRET') == client_secret
+    return client_secret == os.getenv('SOCKET_CHECKER_SECRET')
 
 
 class CheckSocketsRequest(BaseModel):
@@ -21,6 +21,6 @@ class CheckSocketsRequest(BaseModel):
 @app.get('/check')
 def check(request_body: CheckSocketsRequest, http_authorization: str = Header(None, convert_underscores=False)):
     if not authenticate_client(http_authorization):
-        raise HTTPException(401, 'Unauthorised')
+        raise HTTPException(401, 'Unauthorised. Incorrect HTTP_AUTHORIZATION value.')
     results = execute_socket_checks(request_body.sockets, timeout=request_body.timeout)
     return results
