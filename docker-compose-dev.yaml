@@ -1,0 +1,10 @@
+version: '3'
+services:
+  socket_checker:
+    image: socket-checker
+    environment:
+      SOCKET_CHECKER_SECRET: henlo-4431
+    volumes:
+      - ./:/usr/src/app:ro
+    ports:
+      - 4045:4045
