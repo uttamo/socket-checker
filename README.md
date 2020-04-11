@@ -1,4 +1,4 @@
-# Socket Checker
+# 🔌 Socket Checker
 A simple REST API that allows you to check whether sockets are open by asynchronously attempting to start connections.
 
 # Usage with Docker
@@ -31,7 +31,7 @@ A simple REST API that allows you to check whether sockets are open by asynchron
 ``` 
 Note: `timeout` is optional, the API will default the connection timeout to 3 seconds if not provided.
 ### Response
-#### Success (`HTTP 200`)
+#### ✅ Success (`HTTP 200`)
 ```json
 {
   "results": [
@@ -46,9 +46,9 @@ Note: `timeout` is optional, the API will default the connection timeout to 3 se
   "timeout_seconds": 4,
 }
 ```
-#### Failure – incorrect `HTTP_AUTHORIZATION` secret (`HTTP 401`)
+#### ⚠️ Failure – incorrect `HTTP_AUTHORIZATION` secret (`HTTP 401`)
 ```json
 {
-  "detail": "Unauthorised. Incorrect HTTP_AUTHORIZATION value."
+  "detail": "Unauthorised."
 }
 ```

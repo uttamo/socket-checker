@@ -21,6 +21,6 @@ class CheckSocketsRequest(BaseModel):
 @app.get('/check')
 def check(request_body: CheckSocketsRequest, http_authorization: str = Header(None, convert_underscores=False)):
     if not authenticate_client(http_authorization):
-        raise HTTPException(401, 'Unauthorised. Incorrect HTTP_AUTHORIZATION value.')
+        raise HTTPException(401, 'Unauthorised.')
     results = execute_socket_checks(request_body.sockets, timeout=request_body.timeout)
     return results
