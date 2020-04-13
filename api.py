@@ -9,7 +9,7 @@ from checker import execute_socket_checks
 app = FastAPI()
 
 
-def authenticate_client(client_secret: str) -> bool:
+def authorise_client(client_secret: str) -> bool:
     return client_secret == os.getenv('SOCKET_CHECKER_SECRET')
 
 
@@ -18,9 +18,9 @@ class CheckSocketsRequest(BaseModel):
     timeout: Optional[float]
 
 
-@app.get('/check')
+@app.get('/check_sockets')
 def check(request_body: CheckSocketsRequest, http_authorization: str = Header(None, convert_underscores=False)):
-    if not authenticate_client(http_authorization):
+    if not authorise_client(http_authorization):
         raise HTTPException(401, 'Unauthorised.')
     results = execute_socket_checks(request_body.sockets, timeout=request_body.timeout)
     return results
