@@ -1,5 +1,5 @@
 # 🔌 Socket Checker
-A simple REST API that allows you to check whether sockets are open by asynchronously attempting to start connections.
+A simple REST API that allows you to check whether network sockets are open by asynchronously attempting to start connections.
 
 # Usage with Docker
 1. Edit `docker-compose.yaml` file with the following changes
