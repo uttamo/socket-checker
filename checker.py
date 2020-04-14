@@ -18,7 +18,7 @@ def execute_socket_checks(addresses: List[Tuple[str, int]], timeout=None) -> dic
 
     # Prepare output
     no_of_addresses = len(addresses)
-    no_of_open_sockets = len([i for i in results if i[2]])
+    no_of_open_sockets = len([i for i in results if i['connection_succeeded']])
     res = {
         'results': results,
         'total_duration_seconds': end-start,
@@ -30,7 +30,7 @@ def execute_socket_checks(addresses: List[Tuple[str, int]], timeout=None) -> dic
     return res
 
 
-async def check_socket_is_open(host: str, port: int, timeout=DEFAULT_TIMEOUT) -> Tuple[str, int, bool]:
+async def check_socket_is_open(host: str, port: int, timeout=DEFAULT_TIMEOUT) -> dict:
     connection_succeeded = False
     try:
         await asyncio.wait_for(asyncio.open_connection(host, port), timeout=timeout)
@@ -39,4 +39,4 @@ async def check_socket_is_open(host: str, port: int, timeout=DEFAULT_TIMEOUT) ->
         logging.info(f'Check for {host}:{port} timed out ({timeout}s)')
     except Exception as ex:
         logging.info(f'Check for {host}:{port} {ex}')
-    return host, port, connection_succeeded
+    return {'host': host, 'port': port, 'connection_succeeded': connection_succeeded}

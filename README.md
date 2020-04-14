@@ -11,22 +11,17 @@ A simple REST API that allows you to check whether sockets are open by asynchron
 
 # API
 ### Request
-#### URL: `/check_sockets`
-
-#### Method: `GET`
-
-#### Header: `HTTP_AUTHORIZATION` 
-- Should contain the secret that matches the secret you chose (`SOCKET_CHECKER_SECRET`) and placed in your `docker-compose.yaml` file.
-
-#### JSON payload
+#### Endpoint: `GET /check_sockets`
+#### JSON request body
 ```json
 {
-	"sockets": [
-		["0.0.0.0", 5050],
-		["178.239.166.155", 22],
-		["185.16.206.10", 22]
-	],
-	"timeout": 4
+  "api_secret": "<secret-from-docker-compose-file>",
+  "sockets": [
+          ["0.0.0.0", 5050],
+          ["178.239.166.155", 22],
+          ["185.16.206.10", 22]
+  ],
+  "timeout": 4
 }
 ``` 
 Note: `timeout` is optional, the API will default the connection timeout to 3 seconds if not provided.
@@ -46,7 +41,7 @@ Note: `timeout` is optional, the API will default the connection timeout to 3 se
   "timeout_seconds": 4
 }
 ```
-#### ⚠️ Failure – incorrect `HTTP_AUTHORIZATION` secret (`HTTP 401`)
+#### ⚠️ Failure – incorrect `api_secret` value (`HTTP 401`)
 ```json
 {
   "detail": "Unauthorised."
