@@ -1,6 +1,7 @@
 version: '3'
 services:
   socket-checker:
+    build: .
     image: socket-checker
     environment:
       SOCKET_CHECKER_SECRET: test-key-123

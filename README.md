@@ -1,21 +1,21 @@
 # 🔌 Socket Checker
 A simple REST API that allows you to check whether network sockets are open by asynchronously attempting to start connections.
 
-# Usage with Docker
-1. Edit `docker-compose.yaml` file with the following changes
-   * Replace the value for `SOCKET_CHECKER_SECRET` with your own secret.
+## Usage with Docker
+1. `cd` into the working directory.
+2. Edit `docker-compose.yaml` file with the following changes
+   * Replace the value for `SOCKET_CHECKER_SECRET` with your own value. This sets an environment variable.
    * [Change the port mapping](https://docs.docker.com/compose/compose-file/#ports) `<host port>:<container port>` (host port <-- container port).
-2. Build the Docker image: `docker build -t socket-checker .`
-3. Run the container: `docker-compose up`. To run in detached mode, add the option `-d`.
+3. Execute `docker-compose up`. When you do this for the first time, it will build the image (this may take a few minutes) and run it. To run in detached mode, add the option `-d`.
 
 
-# API
+## API
 ### Request
 #### Endpoint: `GET /check_sockets`
 #### JSON request body
 ```json
 {
-  "api_secret": "<secret-from-docker-compose-file>",
+  "api_secret": "<env var SOCKET_CHECKER_SECRET>",
   "sockets": [
           ["0.0.0.0", 5050],
           ["178.239.166.155", 22],
