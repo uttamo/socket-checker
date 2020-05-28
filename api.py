@@ -22,6 +22,6 @@ def authorise_client(request_body: CheckSocketsRequest) -> bool:
 @app.get('/check_sockets')
 def check(request_body: CheckSocketsRequest):
     if not authorise_client(request_body):
-        raise HTTPException(401, 'Unauthorised.')
+        raise HTTPException(403, 'Unauthorised.')
     results = execute_socket_checks(request_body.sockets, timeout=request_body.timeout)
     return results

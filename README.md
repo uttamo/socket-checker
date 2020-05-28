@@ -12,7 +12,7 @@ A simple REST API that allows you to check whether network sockets are open by a
 ## API
 ### Request
 #### Endpoint: `GET /check_sockets`
-#### JSON request body
+#### JSON request body example
 ```json
 {
   "api_secret": "<env var SOCKET_CHECKER_SECRET>",
@@ -27,6 +27,7 @@ A simple REST API that allows you to check whether network sockets are open by a
 Note: `timeout` is optional, the API will default the connection timeout to 3 seconds if not provided.
 ### Response
 #### ✅ Success (`HTTP 200`)
+#### Example
 ```json
 {
   "results": [
@@ -41,7 +42,7 @@ Note: `timeout` is optional, the API will default the connection timeout to 3 se
   "timeout_seconds": 4
 }
 ```
-#### ⚠️ Failure – incorrect `api_secret` value (`HTTP 401`)
+#### ⚠️ Failure – incorrect `api_secret` value (`HTTP 403`)
 ```json
 {
   "detail": "Unauthorised."
