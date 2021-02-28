@@ -5,7 +5,7 @@ A simple REST API that allows you to check whether network sockets are open by a
 1. `cd` into the working directory.
 2. Edit `docker-compose.yaml` file with the following changes
    * Replace the value for `SOCKET_CHECKER_SECRET` with your own value. This sets an environment variable.
-   * [Change the port mapping](https://docs.docker.com/compose/compose-file/#ports) `<host port>:<container port>` (host port <-- container port).
+   * [Change the port mapping](https://docs.docker.com/compose/compose-file/compose-file-v3/#ports) `<host>:<container>`.
 3. Execute `docker-compose up`. When you do this for the first time, it will build the image (this may take a few minutes) and run it. To run in detached mode, add the option `-d`.
 
 
